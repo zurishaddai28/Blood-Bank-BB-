@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Available Donors</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="top-buttons">
+<a href="/" class="btn">Home</a>
+<button onclick="history.back()" class="btn">Back</button>
+</div>
+
+<h2>Available Donors</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Blood</th>
+<th>Phone</th>
+<th>City</th>
+
+{% if session.get('admin') %}
+<th>Edit</th>
+{% endif %}
+
+</tr>
+
+{% for donor in donors %}
+
+<tr>
+
+<td>{{ donor[0] }}</td>
+<td>{{ donor[1] }}</td>
+<td>{{ donor[2] }}</td>
+<td>{{ donor[3] }}</td>
+<td>{{ donor[4] }}</td>
+
+{% if session.get('admin') %}
+<td><a href="/edit/{{ donor[0] }}">Edit</a></td>
+{% endif %}
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>
